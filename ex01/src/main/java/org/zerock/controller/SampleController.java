@@ -6,8 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.zerock.domain.SampleDTO;
 import org.zerock.domain.SampleDTOList;
 
@@ -77,7 +79,23 @@ public class SampleController {
 		log.info("re2------------");
 	}
 	
+	@GetMapping("/exUpload")
+	public void exUpload() {
+		log.info("exUpload");
 	}
+	
+	//form에서 넘어오는 files 파라미터를 받아줌
+	@PostMapping("/exUploadPost")
+	public void exUploadPost(ArrayList<MultipartFile> files) {
+		
+		files.forEach(file -> {
+			log.info(file.getOriginalFilename());
+			log.info(file.getSize());
+			log.info(file.getContentType());
+		});
+	}
+	
+}
 
 
 

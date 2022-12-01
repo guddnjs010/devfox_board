@@ -22,8 +22,21 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- File Upload bean추가 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding" value="utf-8"></beans:property>
+		<!-- 1024*1024*10bytes 10MB -->
+		<beans:property name="maxUploadSize" value="104857560"></beans:property>
+		<!-- 1024*1024*2bytes 2MB -->
+		<beans:property name="maxUploadSizePerFile" value="20907152"></beans:property>
+		<!-- 업로드될 파일 경로 -->
+		<beans:property name="uploadTempDir" value="file:/C:/upload/tmp"></beans:property>
+		<beans:property name="maxInMemorySize" value="10485756"></beans:property>
+	</beans:bean>
+	<!-- controller 패키지를 읽음 -->
 	<context:component-scan base-package="org.zerock.controller" />
-	
+	<!-- exception패키를 읽음 -->
+	<context:component-scan base-package="org.zerock.exception" />
 	
 	
 </beans:beans>
