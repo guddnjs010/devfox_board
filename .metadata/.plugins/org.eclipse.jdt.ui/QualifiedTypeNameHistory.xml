@@ -15,9 +15,6 @@
     <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactory"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Select"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="org.junit.Test"/>
     <fullyQualifiedTypeName name="org.zerock.mapper.TimeMapper"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
@@ -25,14 +22,19 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="org.zerock.domain.SampleDTO"/>
     <fullyQualifiedTypeName name="org.zerock.domain.SampleDTOList"/>
-    <fullyQualifiedTypeName name="lombok.Data"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartFile"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ControllerAdvice"/>
-    <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ExceptionHandler"/>
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Select"/>
+    <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.junit.Test"/>
+    <fullyQualifiedTypeName name="org.zerock.domain.BoardVO"/>
 </qualifiedTypeNameHistroy>
