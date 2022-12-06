@@ -14,6 +14,8 @@ public interface BoardMapper {
 	//BoardVOをパラメータにしてDBにinsertする
 	void insert(BoardVO board);
 	
+	void insertSelectKey(BoardVO board);
+	
 	//詳細画面
 	//bnoをパラメータにして詳細に見られるメソッド
 	BoardVO read(Long bno);

@@ -26,6 +26,7 @@ public class BoardControllerTests {
 	@Setter(onMethod_ = {@Autowired} )
 	private WebApplicationContext ctx;
 	
+	//wasを実行しないでtestできる
 	private MockMvc mockMvc;
 	
 	@Before
@@ -38,6 +39,20 @@ public class BoardControllerTests {
 		log.info(
 			mockMvc.perform(
 					MockMvcRequestBuilders.get("/board/list"))
+			.andReturn()
+			.getModelAndView()
+			.getModelMap());
+	}
+	
+	@Test
+	public void testRegister() throws Exception{
+		log.info(
+			mockMvc.perform(
+					MockMvcRequestBuilders.post("/board/register")
+					.param("title", "test 테스트제목")
+					.param("content", "test 테스트내용")
+					.param("writer", "test 테스트작성자")
+					)
 			.andReturn()
 			.getModelAndView()
 			.getModelMap());

@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.zerock.domain.BoardVO;
 import org.zerock.mapper.BoardMapperTests;
 
 import lombok.extern.log4j.Log4j;
@@ -26,6 +27,19 @@ public class BoardServiceTests {
 	public void testGetList() {
 		
 		service.getList().forEach(board -> log.info(board));
+	}
+	
+	@Test
+	public void testRegister() {
+		BoardVO vo = new BoardVO();
+		log.info("-------------------------------");
+		vo.setTitle("Test 테스트123");
+		vo.setContent("Content 테스트123");
+		vo.setWriter("tester");
+		
+		long bno =service.register(vo);
+		
+		log.info("BNO : " + bno);
 	}
 	
 }

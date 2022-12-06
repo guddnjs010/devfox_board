@@ -7,7 +7,7 @@ import org.zerock.domain.BoardVO;
 public interface BoardService {
 
 	//掲示物登録
-	void register(BoardVO board);
+	Long register(BoardVO board);
 	
 	//詳細画面
 	BoardVO get(Long bno);

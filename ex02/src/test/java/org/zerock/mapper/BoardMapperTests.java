@@ -34,6 +34,19 @@ public class BoardMapperTests {
 	}
 	
 	@Test
+	public void testInsertSelectKey() {
+		BoardVO vo = new BoardVO();
+		log.info("-------------------------------");
+		vo.setTitle("Test 테스트");
+		vo.setContent("Content 테스트");
+		vo.setWriter("tester");
+		boardMapper.insertSelectKey(vo);
+		
+		log.info("---------------------");
+		log.info("after insert selectkey "+ vo.getBno());
+	}
+	
+	@Test
 	public void testRead() {
 		BoardVO vo = boardMapper.read(1L);
 		log.info(vo);
@@ -42,7 +55,7 @@ public class BoardMapperTests {
 	
 	@Test
 	public void testDelete() {
-		int count = boardMapper.delete(4L);
+		int count = boardMapper.delete(9L);
 
 		//trueなcountが１
 		log.info("count : " + count);
