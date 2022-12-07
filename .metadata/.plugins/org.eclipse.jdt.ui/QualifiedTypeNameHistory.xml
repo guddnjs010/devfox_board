@@ -48,4 +48,6 @@
     <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.support.RedirectAttributes"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="org.zerock.domain.Criteria"/>
+    <fullyQualifiedTypeName name="org.zerock.domain.PageDTO"/>
 </qualifiedTypeNameHistroy>

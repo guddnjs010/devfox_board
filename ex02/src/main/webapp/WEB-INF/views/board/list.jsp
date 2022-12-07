@@ -33,10 +33,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <!-- listでtitleを押すとgetまでbnoを一緒に届ける -->
                                 <c:forEach items="${list}" var ="board">
                                     <tr class="odd gradeX">
                                         <td>${board.bno }</td>
-                                        <td>${board.title }</td>
+                                        <td><a href='/board/get?bno=<c:out value="${board.bno}"/>'><c:out value="${board.title }"/></td>
                                         <td>${board.writer }</td>
                                         <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate }"/></td>
                                         <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate }"/></td>
@@ -45,6 +46,8 @@
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
+                            
+                            <h3>${pageMaker}</h3>
                             
                         </div>
                         <!-- /.panel-body -->
@@ -89,13 +92,19 @@ $(document).ready(function() {
 	
 	checkModal(result);
 	
+	//registerの後バックしたらmodalがまた出ないようにブラウザのhistoryを消す
+	history.replaceState({}, null, null);
+	
 	function checkModal(result){
-		if(result === ''){
+		if(result === '' || history.state){
 			return;
 		}
 		if(parseInt(result) > 0){
 			$(".modal-body").html(
 					"게시글"+parseInt(result)+"번이 등록되었습니다.");
+		}else if(result ==='success' ){
+			$(".modal-body").html(
+					"정상적으로 처리 됐습니다.");
 		}
 		$("#myModal").modal("show");
 	}

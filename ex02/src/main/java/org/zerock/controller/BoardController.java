@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
+import org.zerock.domain.PageDTO;
 import org.zerock.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,11 +23,25 @@ public class BoardController {
 	
 	private final BoardService service;
 
+	//paging処理の前
+	
+	//@GetMapping("/list")
+	//public void list(Model model) {
+	//	log.info("list.............");
+	//	
+	//	model.addAttribute("list", service.getList());
+	//	
+	//}
+	
+	//paging処理したリスト
 	@GetMapping("/list")
-	public void list(Model model) {
+	public void list(Criteria cri, Model model) {
+		
+		log.info(cri);
 		log.info("list.............");
 		
-		model.addAttribute("list", service.getList());
+		model.addAttribute("list", service.getList(cri));
+		model.addAttribute("pagaMaker", new PageDTO(cri, 123));
 		
 	}
 	
@@ -42,6 +58,18 @@ public class BoardController {
 		 return "redirect:/board/list";
 		
 	}
+	
+	//bnoをパラメータに受けてmodelに込める
+	@GetMapping("/get")
+	public void get(@RequestParam("bno") Long bno, Model model) {
+		model.addAttribute("board", service.get(bno));
+	}
+	
+	@GetMapping("/modify")
+	public void modify(@RequestParam("bno") Long bno, Model model) {
+		model.addAttribute("board", service.get(bno));
+	}
+	
 	
 	@PostMapping("/modify")
 	public String modify(BoardVO board, RedirectAttributes rttr) {
