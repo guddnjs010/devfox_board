@@ -39,9 +39,32 @@
                                      <label>Writer</label>
                                      <input class="form-control" name="writer" value='<c:out value= "${board.writer }"/>'>
                                 </div>
-                                <button type="submit" class="btn btn-default"><a href='/board/list'>목록으로돌아가기</a></button>
-                                <button type="reset" class="btn btn-default"><a href='/board/modify?bno=<c:out value= "${board.bno }"/>'>수정하기or삭제하기</a></button>
-                        	
+                                
+	                            <form id='actionForm' action="/board/list" method='get'>
+	                            	<input type='hidden' name='pageNum' value = '${cri.pageNum}'>
+	                            	<input type='hidden' name='amount' value = '${cri.amount}'>
+	                            	<input type='hidden' name='bno' value = '${board.bno}'>
+	                            </form>
+                                
+                                <button type="button" class="btn btn-default listBtn"><a href='/board/list'>목록으로돌아가기</a></button>
+                                <button type="button" class="btn btn-default modBtn"><a href='/board/modify?bno=<c:out value= "${board.bno }"/>'>수정하기or삭제하기</a></button>
+                        		<script>
+                        		var actionForm = $("#actionForm");
+                        		
+                        		$(".listBtn").click(function(e){
+                        			e.preventDefault();
+                        			actionForm.find("input[name='bno']").remove();
+                        			actionForm.submit();
+                        		});
+                        		
+                        		$(".modBtn").click(function(e){
+                        			e.preventDefault();
+                        			actionForm.attr("action","/board/modify");
+                        			actionForm.submit();
+                        		});
+                        		
+                        		
+                        		</script>
 
                         </div>
                         <!-- /.panel-body -->
