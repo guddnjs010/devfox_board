@@ -57,6 +57,7 @@
 <script>
 $(document).ready(function(){
 	
+	
 	var formObj = $("form");
 	
 	$('.btn').click(function(e){
@@ -69,7 +70,8 @@ $(document).ready(function(){
 		console.log(operation);
 		
 		if(operation === 'list'){
-			self.location = "/board/list";
+			formObj.attr("action", "/board/list");
+			formObj.submit();
 			
 		}else if(operation === 'remove'){
 			

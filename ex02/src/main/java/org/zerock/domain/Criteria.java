@@ -15,6 +15,12 @@ public class Criteria {
 	//ページずつ見せる数
 	private int amount;
 	
+	//検索条件, title, content, writer ...
+	private String type;
+	
+	//keyword
+	private String keyword;
+	
 	//基本的にページは１、十個ずつ
 	public Criteria() {
 		this(1,10);
@@ -24,5 +30,11 @@ public class Criteria {
 		super();
 		this.pageNum = pageNum;
 		this.amount = amount;
+	}
+	
+	public String[] getTypeArr() {
+		
+		System.out.println("getTypeArr..................");
+		return type == null? new String[] {}: type.split("");
 	}
 }
