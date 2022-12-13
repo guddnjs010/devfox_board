@@ -11,7 +11,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageDTO;
+import org.zerock.domain.ReplyVO;
 import org.zerock.service.BoardService;
+import org.zerock.service.ReplyService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -23,6 +25,7 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 	
 	private final BoardService service;
+	private final ReplyService replyService;
 
 	//paging処理の前
 	
@@ -64,6 +67,7 @@ public class BoardController {
 	@GetMapping("/get")
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		model.addAttribute("board", service.get(bno));
+		model.addAttribute("replyList", replyService.getList(cri, bno));
 	}
 	
 	@GetMapping("/modify")
@@ -101,6 +105,16 @@ public class BoardController {
 		rttr.addAttribute("keyword", cri.getKeyword());
 		
 		return "redirect:/board/list";
+	}
+	
+	@PostMapping("/reply/register")
+	public String replyRegister(ReplyVO vo, RedirectAttributes rttr) {
+		int count = replyService.register(vo);
+		
+		rttr.addFlashAttribute("result", count);
+		
+		return "redirect:/board/get?bno="+vo.getBno();
+		
 	}
 	
 	@GetMapping("/register")

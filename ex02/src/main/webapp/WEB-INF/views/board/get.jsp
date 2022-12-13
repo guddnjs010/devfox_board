@@ -5,6 +5,12 @@
 <%@ taglib uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@include file="../includes/header.jsp" %>
+
+<script type="text/javascript">
+if('${result}' != ''){
+	alert('댓글등록이 완료됐습니다.');	
+}
+</script>
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">게시물 상세보기</h1>
@@ -50,6 +56,45 @@
                                 
                                 <button type="button" class="btn btn-default listBtn"><a href='/board/list'>목록으로돌아가기</a></button>
                                 <button type="button" class="btn btn-default modBtn"><a href='/board/modify?bno=<c:out value= "${board.bno }"/>'>수정하기or삭제하기</a></button>
+                                
+                                <h3>댓글</h3>
+                                <div>
+                                <form action="/board/reply/register" method="post">
+                                <input type='hidden' name='bno' value = '${board.bno}'>
+                                <div class="form-group">
+                                     <label>댓글내용</label>
+                                     <textarea rows="5" cols="50" class="form-control" name="reply"></textarea>
+                                </div>
+                                <div class="form-group">
+                                     <label>댓글작성자</label>
+                                     <input class="form-control" name="replyer">
+                                </div>
+                                <button type="submit" class="btn btn-default">댓글달기</button>
+                                </form>
+                                </div>
+                                <h2>댓글 목록</h2>
+                                 <table width="100%" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>RNO</th>
+                                        <th>댓글작성자</th>
+                                        <th>댓글 내용</th>
+                                        <th>작성일</th>
+                                        <th>수정일</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${replyList}" var ="replyList">
+                                    <tr class="odd gradeX">
+                                        <td>${replyList.rno }</td>
+                                        <td>${replyList.replyer }</td>
+                                        <td>${replyList.reply }</td>
+                                        <td><fmt:formatDate pattern="yyyy-MM-dd" value="${replyList.replyDate }"/></td>
+                                        <td><fmt:formatDate pattern="yyyy-MM-dd" value="${replyList.updateDate }"/></td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>                         
                         		<script>
                         		var actionForm = $("#actionForm");
                         		
