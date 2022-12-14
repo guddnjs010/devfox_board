@@ -25,7 +25,7 @@ public class ReplyServiceImpl implements ReplyService{
 	
 	@Override
 	public int register(ReplyVO vo) {
-		log.info("register............." + vo);
+		
 		return mapper.insert(vo);
 	}
 
@@ -44,7 +44,7 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public int remove(Long rno) {
 		log.info("remove................."+ rno);
-		return 0;
+		return mapper.delete(rno);
 	}
 
 	@Override

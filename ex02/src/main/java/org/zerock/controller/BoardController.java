@@ -107,15 +107,6 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	@PostMapping("/reply/register")
-	public String replyRegister(ReplyVO vo, RedirectAttributes rttr) {
-		int count = replyService.register(vo);
-		
-		rttr.addFlashAttribute("result", count);
-		
-		return "redirect:/board/get?bno="+vo.getBno();
-		
-	}
 	
 	@GetMapping("/register")
 	public void registerGET() {
