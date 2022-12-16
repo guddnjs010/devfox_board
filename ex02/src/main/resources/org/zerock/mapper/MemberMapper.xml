@@ -1,1 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org.dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="org.zerock.mapper.MemberMapper">
+	
+	<insert id = "insert">
+		insert into tbl_member (userid, password, name, email)
+		values (#{userid}, #{password}, #{name}, #{email})
+	</insert>
+	
+	<select id="readMember" resultType="org.zerock.domain.MemberVO">
+	select * from tbl_member where userid = #{userid} and password = #{password}
+	</select>
+	
+	</mapper>
