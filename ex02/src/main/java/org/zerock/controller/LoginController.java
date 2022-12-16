@@ -3,6 +3,7 @@ package org.zerock.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -28,22 +29,28 @@ public class LoginController {
 	private final BoardService service;
 	private final MemberService memberService;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(MemberVO memberVO, RedirectAttributes rttr, HttpServletRequest request) {
-		MemberVO memberVO2 = new MemberVO();
-		HttpSession session = request.getSession();
-		if(null == memberVO2) {
-			return "redirect:/login";
+	@PostMapping("/loginProcess")
+	public String loginProcess(MemberVO memberVO, RedirectAttributes rttr, HttpServletRequest request) {
+		MemberVO member = memberService.getMember(memberVO.getUserid(), memberVO.getPassword());
+		if(null == member) {
+			return "redirect:/login/login";
 		}
-		session.setAttribute("user", memberVO2);
-		MemberVO memberVO3 = (MemberVO)session.getAttribute("user");
-		memberVO3.getUserid();
+		HttpSession session = request.getSession();
+		session.setAttribute("user", member);
+		session.setAttribute("id", member.getUserid());
 		return "/home";
 	}
 	
 	@GetMapping("/login")
 	public void goLogin() {
 		
+	}
+	
+	@GetMapping("/logout")
+	public String login(RedirectAttributes rttr, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.setAttribute("user", null);
+		return "/home";
 	}
 	
 	@PostMapping("/memberRegister")

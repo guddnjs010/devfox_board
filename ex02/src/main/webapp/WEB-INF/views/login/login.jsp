@@ -10,6 +10,10 @@ if('${result}' != ''){
 	alert('회원가입이 완료됐습니다');
 }
 </script>
+<%
+String id = ()session.getAttribute("user");
+String pwd = (String)session.getAttribute("pwd");
+Integer age = (Integer)session.getAttribute("age");%>
 
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -18,7 +22,7 @@ if('${result}' != ''){
                         <h3 class="panel-title">로그인or회원가입</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" method="post">
+                        <form id="memberForm" action="/login/loginProcess" method="post">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="ID" name="userid" type="text" autofocus>
@@ -32,7 +36,7 @@ if('${result}' != ''){
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="/login/login" class="btn btn-lg btn-success btn-block">Login</a>
+                                <button type="submit" class="btn btn-default">LOGIN Button</button>
                             </fieldset>
                         </form>
                         <button type="button" class="btn btn-default"><a href="memberRegister" class="btn btn-lg btn-success btn-block">회원가입</a></button>

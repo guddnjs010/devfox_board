@@ -6,5 +6,5 @@ public interface MemberService {
 	
 	int registerMember(MemberVO member);
 	
-
+	MemberVO getMember(String userid, String password);
 }

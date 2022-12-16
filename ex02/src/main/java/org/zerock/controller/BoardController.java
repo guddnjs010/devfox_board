@@ -1,6 +1,7 @@
 package org.zerock.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,21 +42,21 @@ public class BoardController {
 	
 	//paging処理したリスト
 	@GetMapping("/list")
-	public void list(Criteria cri, Model model) {
+	public void list(Criteria cri, Model model, HttpServletRequest request) {
 		
 		log.info(cri);
 		log.info("list.............");
-		
 		model.addAttribute("list", service.getList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(cri) ));
 		
 	}
 	
 	@PostMapping("/register")
-	public String register(BoardVO board, RedirectAttributes rttr) {
-		
+	public String register(BoardVO board, RedirectAttributes rttr, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberVO memberVo = (MemberVO)session.getAttribute("user"); 
 		log.info("board : " + board);
-		
+		board.setWriter(memberVo.getUserid());
 		 Long bno = service.register(board);
 		 
 		 //一回だけ"result"にbnoを込めてboard/listに届けるメソッド
@@ -67,7 +68,11 @@ public class BoardController {
 	
 	//bnoをパラメータに受けてmodelに込める
 	@GetMapping("/get")
-	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberVO memberVo = (MemberVO)session.getAttribute("user"); 
+		log.info("getUserid : " + memberVo.getUserid());
+		
 		model.addAttribute("board", service.get(bno));
 		model.addAttribute("replyList", replyService.getList(cri, bno));
 	}

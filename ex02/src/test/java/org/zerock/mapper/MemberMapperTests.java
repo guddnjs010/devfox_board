@@ -35,13 +35,9 @@ public class MemberMapperTests {
 	
 	@Test
 	public void readMemberTest() {
-		MemberVO member1 = new MemberVO();
-		member1.setUserid("형원");
-		member1.setPassword("1234");
-		member1.setName("형원");
-		member1.setEmail("sada@adasd.com");
-		
-		MemberVO member = mapper.readMember(member1.getUserid(), member1.getPassword());
+		System.out.println("1111");
+		MemberVO member = new MemberVO();
+		member = mapper.readMember("형원","1234");
 		
 		log.info("member정보 : " + member);
 	}
