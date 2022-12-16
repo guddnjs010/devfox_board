@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.domain.MemberVo;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -32,11 +31,5 @@ public class LoginController {
 		return "/login/login";
 	}
 	
-	@PostMapping("/loginProcess")
-	public String loginProcess(MemberVo vo, RedirectAttributes rttr) {
-		
-		
-		return "redirect:/";
-		
-	}
+
 }
