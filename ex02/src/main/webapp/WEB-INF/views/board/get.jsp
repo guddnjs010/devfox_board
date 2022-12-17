@@ -10,6 +10,7 @@
 if('${result}' != ''){
 	alert('작업이 완료됐습니다.');	
 }
+
 </script>
             <div class="row">
                 <div class="col-lg-12">
@@ -38,12 +39,12 @@ if('${result}' != ''){
                                 
                                 <div class="form-group">
                                      <label>Content</label>
-                                     <textarea rows="5" cols="50" class="form-control" name="content"><c:out value= "${board.content }"/></textarea>
+                                     <textarea rows="5" cols="50" class="form-control" name="content" readonly="readonly" ><c:out value= "${board.content }"/></textarea>
                                 </div>
                                 
                                 <div class="form-group">
                                      <label>Writer</label>
-                                     <input class="form-control" name="writer" value='<c:out value= "${board.writer }"/>'>
+                                     <input class="form-control" name="writer" readonly="readonly" value='<c:out value= "${board.writer }"/>'>
                                 </div>
                                 
 	                            <form id='actionForm' action="/board/list" method='get'>
@@ -57,7 +58,8 @@ if('${result}' != ''){
 	                            
                                 
                                 <button type="button" class="btn btn-default listBtn">목록으로돌아가기</button>
-                                <button type="button" class="btn btn-default modBtn">수정하기or삭제하기</button>
+                                
+                                <button type="button" id="modify"class="btn btn-default modBtn">수정하기or삭제하기</button>
                                 
                                 <h3>댓글</h3>
                                 <div>
@@ -70,7 +72,7 @@ if('${result}' != ''){
                                 </div>
                                 <div class="form-group">
                                      <label>댓글작성자</label>
-                                     <input class="form-control" name="replyer">
+                                     <input class="form-control" readonly name="replyer" value="${user.userid }">
                                 </div>
                                 <button type="submit" class="btn btn-default">댓글달기</button>
                                 </form>

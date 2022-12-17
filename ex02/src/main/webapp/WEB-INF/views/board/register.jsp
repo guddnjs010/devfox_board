@@ -31,11 +31,9 @@
                                      <label>Content</label>
                                      <textarea rows="5" cols="50" class="form-control" name="content"></textarea>
                                 </div>
-                                
-                                <div class="form-group">
-                                     <label>Writer</label>
-                                     <input class="form-control" name="writer">
-                                </div>
+
+                                     <input type="hidden" class="form-control" name="writer" value="${user.userid }">
+
                                 <button type="submit" class="btn btn-default">Submit Button</button>
                                 <button type="reset" class="btn btn-default">Reset Button</button>
                         	

@@ -32,6 +32,7 @@
                             </fieldset>
                             <button type="submit" class="btn btn-lg btn-success btn-block">회원가입 완료</button>
                         </form>
+                        <a href="/login/login" class="btn btn-lg btn">뒤로가기</a>
                     </div>
                 </div>
             </div>

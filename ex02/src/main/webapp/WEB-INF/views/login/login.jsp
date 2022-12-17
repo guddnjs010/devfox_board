@@ -4,16 +4,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%@include file="../includes/header.jsp" %>
+<%@include file="../includes/loginHeader.jsp" %>
 <script type="text/javascript">
 if('${result}' != ''){
 	alert('회원가입이 완료됐습니다');
 }
+if('${failMsg}' != ''){
+	alert('${failMsg}');
+}
 </script>
-<%
-String id = ()session.getAttribute("user");
-String pwd = (String)session.getAttribute("pwd");
-Integer age = (Integer)session.getAttribute("age");%>
+
 
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -30,16 +30,13 @@ Integer age = (Integer)session.getAttribute("age");%>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password">
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div>
+
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button type="submit" class="btn btn-default">LOGIN Button</button>
+                                <button type="submit" class="btn btn-lg btn-success btn-block">LOGIN Button</button>
                             </fieldset>
                         </form>
-                        <button type="button" class="btn btn-default"><a href="memberRegister" class="btn btn-lg btn-success btn-block">회원가입</a></button>
+                        <h1></h1>
+                        <a href="/login/memberRegister" class="btn btn-lg btn-success btn-block">회원가입</a>
                     </div>
                 </div>
             </div>

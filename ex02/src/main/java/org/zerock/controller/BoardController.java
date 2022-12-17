@@ -69,12 +69,10 @@ public class BoardController {
 	//bnoをパラメータに受けてmodelに込める
 	@GetMapping("/get")
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		MemberVO memberVo = (MemberVO)session.getAttribute("user"); 
-		log.info("getUserid : " + memberVo.getUserid());
-		
+
 		model.addAttribute("board", service.get(bno));
 		model.addAttribute("replyList", replyService.getList(cri, bno));
+
 	}
 	
 	@GetMapping("/modify")

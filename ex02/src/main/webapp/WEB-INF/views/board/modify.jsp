@@ -40,7 +40,7 @@
                                 
                                 <div class="form-group">
                                      <label>Writer</label>
-                                     <input class="form-control" name="writer" value='<c:out value= "${board.writer }"/>'>
+                                     <input class="form-control" readonly name="writer" value='<c:out value= "${board.writer }"/>'>
                                 </div>
                                 <button class="btn btn-default" data-oper='modify'>수정하기(modify)</button>
                                 <button class="btn btn-danger" data-oper='remove'>삭제(remove)</button>

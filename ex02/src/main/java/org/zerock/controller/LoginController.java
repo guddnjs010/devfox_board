@@ -29,16 +29,17 @@ public class LoginController {
 	private final BoardService service;
 	private final MemberService memberService;
 	
+	
 	@PostMapping("/loginProcess")
 	public String loginProcess(MemberVO memberVO, RedirectAttributes rttr, HttpServletRequest request) {
 		MemberVO member = memberService.getMember(memberVO.getUserid(), memberVO.getPassword());
 		if(null == member) {
+			rttr.addFlashAttribute("failMsg", "아이디 혹은 비밀번호를 확인하세요");
 			return "redirect:/login/login";
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("user", member);
-		session.setAttribute("id", member.getUserid());
-		return "/home";
+		return "redirect:/board/list";
 	}
 	
 	@GetMapping("/login")
@@ -50,7 +51,7 @@ public class LoginController {
 	public String login(RedirectAttributes rttr, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.setAttribute("user", null);
-		return "/home";
+		return "redirect:/login/login";
 	}
 	
 	@PostMapping("/memberRegister")
