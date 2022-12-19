@@ -31,4 +31,10 @@ public class MemberServiceImpl implements MemberService{
 		
 		return member;
 	}
+
+	@Override
+	public MemberVO checkId(String userid) {
+		// TODO Auto-generated method stub
+		return mapper.checkId(userid);
+	}
 }
