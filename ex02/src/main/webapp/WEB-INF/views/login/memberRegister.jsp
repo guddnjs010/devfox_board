@@ -74,6 +74,7 @@ $(document).ready(function(){
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">회원가입</h3>
+                        <p>※name과 email은 ID및 password찾기에 이용되니 정확히 적어주세요.</p>
                     </div>
                     <div class="panel-body">
                         <form id='registerMemberForm' action="/login/memberRegister" method='post'>

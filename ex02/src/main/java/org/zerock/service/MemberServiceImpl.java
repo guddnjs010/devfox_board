@@ -37,4 +37,18 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return mapper.checkId(userid);
 	}
+
+	@Override
+	public MemberVO idSearch(String password, String name, String email) {
+		MemberVO member = new MemberVO();
+		member = mapper.idSearch(password, name, email);
+		return member;
+	}
+
+	@Override
+	public MemberVO passwordSearch(String userid, String name, String email) {
+		MemberVO member = new MemberVO();
+		member = mapper.passwordSearch(userid, name, email);
+		return member;
+	}
 }

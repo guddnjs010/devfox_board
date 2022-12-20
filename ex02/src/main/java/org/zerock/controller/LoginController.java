@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.MemberVO;
@@ -80,6 +81,41 @@ public class LoginController {
 		} else {
 			//重なるidなし
 			return true;
+		}
+	}
+	
+	@GetMapping("/idSearch")
+	public void idSearchForm() {
+		
+	}
+	
+	@PostMapping("/idSearchAction")
+	public String idSearchAction(@RequestParam("password") String password, @RequestParam("name") String name,@RequestParam("email") String email, RedirectAttributes rttr) {
+		MemberVO member = memberService.idSearch(password, name, email);
+		
+		if(member != null) {
+			rttr.addFlashAttribute("idSearchMsg", member.getUserid());
+			return "redirect:/login/login";
+		}else {
+			rttr.addFlashAttribute("failMsg", "해당정보와 일치하는 ID가 없습니다.");
+			return "redirect:/login/idSearch";
+		}
+	}
+	
+	@GetMapping("/passwordSearch")
+	public void passwordSearchForm() {
+		
+	}
+	
+	@PostMapping("/passwordSearchAction")
+	public String passwordSearchAction(@RequestParam("userid") String userid, @RequestParam("name") String name,@RequestParam("email") String email, RedirectAttributes rttr) {
+		MemberVO member = memberService.passwordSearch(userid, name, email);
+		if(member != null) {
+			rttr.addFlashAttribute("passwordSearchMsg", member.getPassword());
+			return "redirect:/login/login";
+		}else {
+			rttr.addFlashAttribute("failMsg", "입력정보를 다시 확인해주세요.");
+			return "redirect:/login/passwordSearch";
 		}
 	}
 	

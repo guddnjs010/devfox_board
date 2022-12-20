@@ -84,9 +84,9 @@ $(document).ready(function(){
 			.attr("method", "post");
 			formObj.submit();
 		}
-	})
+	});
 	
-})
+});
 </script>        
 
 

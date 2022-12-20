@@ -41,4 +41,28 @@ public class MemberMapperTests {
 		
 		log.info("member정보 : " + member);
 	}
+	
+	@Test
+	public void idSearchTest() {
+		String password = "1234";
+		String name = "김형원";
+		String email ="guddnjs@navd.com";
+		
+		MemberVO member = mapper.idSearch(password, name, email);
+		
+		log.info(member);
+		
+		
+	}
+	
+	@Test
+	public void passwordSearchTest() {
+		String userid ="user";
+		String name = "형원";
+		String email ="guddnjs@navercom";
+		MemberVO member = mapper.passwordSearch(userid, name, email);
+		
+		log.info(member);
+		
+	}
 }

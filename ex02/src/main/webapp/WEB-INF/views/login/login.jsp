@@ -12,6 +12,12 @@ if('${result}' != ''){
 if('${failMsg}' != ''){
 	alert('${failMsg}');
 }
+if('${idSearchMsg}' != ''){
+	alert('회원님의 ID는 ${idSearchMsg} 입니다.');
+}
+if('${passwordSearchMsg}' != ''){
+	alert('회원님의 비밀번호는 ${passwordSearchMsg} 입니다.');
+}
 </script>
 
 
@@ -37,6 +43,8 @@ if('${failMsg}' != ''){
                         </form>
                         <h1></h1>
                         <a href="/login/memberRegister" class="btn btn-lg btn-success btn-block">회원가입</a>
+                        <a href="/login/idSearch" class="btn btn-default">ID찾기</a>
+                        <a href="/login/passwordSearch" class="btn btn-default">비밀번호찾기</a>
                     </div>
                 </div>
             </div>

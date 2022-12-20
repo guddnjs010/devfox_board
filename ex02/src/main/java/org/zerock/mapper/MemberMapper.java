@@ -11,5 +11,7 @@ public interface MemberMapper {
 	
 	public MemberVO checkId(String userid);
 	
+	MemberVO idSearch(@Param("password") String password, @Param("name") String name, @Param("email") String email);
 	
+	MemberVO passwordSearch(@Param("userid") String userid, @Param("name") String name, @Param("email") String email);
 }
