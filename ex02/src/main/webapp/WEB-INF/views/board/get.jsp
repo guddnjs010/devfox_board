@@ -10,6 +10,18 @@
 if('${result}' != ''){
 	alert('작업이 완료됐습니다.');	
 }
+$(document).ready(function(){
+	
+	$("#replyBtn").on("click", function(){
+		
+		let reply = $("textarea[name=reply]").val();
+		if($.isEmptyObject(reply)){
+			alert("댓글 내용을 입력해주세요");
+			return false;
+		}
+	});
+});
+
 
 </script>
             <div class="row">
@@ -74,7 +86,7 @@ if('${result}' != ''){
                                      <label>댓글작성자</label>
                                      <input class="form-control" readonly name="replyer" value="${user.userid }">
                                 </div>
-                                <button type="submit" class="btn btn-default">댓글달기</button>
+                                <button id="replyBtn" type="submit" class="btn btn-default">댓글달기</button>
                                 </form>
                                 </div>
                                 <h2>댓글 목록</h2>
