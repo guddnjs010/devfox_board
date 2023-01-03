@@ -5,12 +5,27 @@
 <%@ taglib uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@include file="../includes/header.jsp" %>
+<%@ page import="org.zerock.domain.MemberVO" %>
+<%@ page import="org.zerock.domain.BoardVO" %>
 
+<%
+
+	HttpSession sessionAttr = request.getSession();
+%>
 <script type="text/javascript">
 if('${result}' != ''){
 	alert('작업이 완료됐습니다.');	
 }
 $(document).ready(function(){
+    <%
+	if(null == sessionAttr.getAttribute("user")) {
+	%>
+	alert("로그인 후 이용해 주세요.");
+	location.href="/login/login";
+	<%
+	}
+    %>
+    
 	
 	$("#replyBtn").on("click", function(){
 		
@@ -70,9 +85,17 @@ $(document).ready(function(){
 	                            
                                 
                                 <button type="button" class="btn btn-default listBtn">목록으로돌아가기</button>
-                                
-                                <button type="button" id="modify"class="btn btn-default modBtn">수정하기or삭제하기</button>
-                                
+                                <%
+                                	if(null != sessionAttr.getAttribute("user")) {
+                                		MemberVO memberVo = (MemberVO) sessionAttr.getAttribute("user");
+                                		BoardVO writer = (BoardVO)request.getAttribute("board");
+                                		if(memberVo.getUserid().equals(writer.getWriter())) {
+								%>  
+                                	<button type="button" id="modify"class="btn btn-default modBtn">수정하기or삭제하기</button>
+								<%  
+                                		}
+                                	}
+                                %>                               
                                 <h3>댓글</h3>
                                 <div>
                                 <form id='replyForm' action="/replies/register" method="post">
@@ -117,13 +140,22 @@ $(document).ready(function(){
                                         </td>
                                         <td><fmt:formatDate pattern="yyyy-MM-dd" value="${replyList.replyDate }"/></td>
                                         <td><fmt:formatDate pattern="yyyy-MM-dd" value="${replyList.updateDate }"/></td>
-                                        <td>
+                                        
+                                       <td>
+                                        <c:if test="${null != sessionScope.user }" > 
+                                        <c:if test="${sessionScope.user.userid eq replyList.replyer}" >
                                         	<button type="button" class="btn btn-default replyModifyBtn">수정하기</button>
                                         	<button type="button" class="btn btn-default replyRegistBtn" style="display:none;">수정완료</button>
+										</c:if>
+										</c:if>
                                         </td>
                                         <td>
+                                        <c:if test="${null != sessionScope.user }" > 
+                                        <c:if test="${sessionScope.user.userid eq replyList.replyer}" >
                                         	<button type="button" class="btn btn-default replyRemoveBtn">삭제하기</button>
                                         	<button type="button" class="btn btn-default replyCancelBtn" style="display:none;">취소하기</button>
+                                        </c:if>
+										</c:if>
                                         </td>
                                     </tr>
                                 </c:forEach>
