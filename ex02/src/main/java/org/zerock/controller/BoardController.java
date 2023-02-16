@@ -119,4 +119,9 @@ public class BoardController {
 		//登録画面に移動する
 	}
 	
+	@GetMapping("/upload")
+	public void upload() {
+		
+	}
+	
 }
