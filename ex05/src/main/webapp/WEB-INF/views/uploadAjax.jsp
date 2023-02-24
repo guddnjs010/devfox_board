@@ -11,6 +11,25 @@
 <title>Insert title here</title>
 </head>
 <body>
+<style>
+	.uploadResult {
+	width : 100%;
+	background-color:gray;
+	}
+	.uploadResult ul{
+	display:flex;
+	flex-flow:row;
+	justify-content:center;
+	align-items:center;
+	}
+	.uploadResult ul li {
+	list-style:none;
+	padding:10px;
+	}
+	.uploadResult ul li img{
+	width:20px;
+	}
+</style>
 <h1>Upload with Ajax</h1>
 
 <div class='uploadDiv'>
@@ -51,7 +70,19 @@
 		var str = "";
 		
 		$(uploadResultArr).each(function(i, obj){
-			str += "<li>" + obj.fileName + "</li>";
+			if(!obj.image){
+				
+				var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid+"_"+obj.fileName);
+				
+				str += "<li><a href='/download?fileName="+fileCallPath+"'>"+"<img src='/resources/img/attach.png'>" + obj.fileName + "</a></li>"
+			}else{
+				
+			//str += "<li>" + obj.fileName + "</li>";
+			var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid+"_"+obj.fileName);
+			
+			str += "<li><img src='/display?fileName="+fileCallPath+"'></li>";
+			
+			}
 		});
 		uploadResult.append(str);
 	}
